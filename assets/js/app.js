@@ -185,31 +185,32 @@ function ontodoupdate() {
     }
 
     spinner.classList.remove('d-none')
-    fetch(UPDATE_URL,configobj)
-    .then(res =>{
-        if(res.ok){
-            return res.json()
-        }
-    })
-    .then(data =>{
-        let col = document.getElementById(UPDATE_ID)
-        let h5 = col.querySelector('.card-body h5')
-        let p = col.querySelector('.card-body p')
-        h5.innerText = data.todo
-        p.innerText = data.userId
+    fetch(UPDATE_URL, configobj)
+        .then(res => {
+            if (res.ok) {
+                return res.json()
+            }
+        })
+        .then(data => {
+            todoForm.reset()
+            let col = document.getElementById(UPDATE_ID)
+            let h5 = col.querySelector('.card-body h5')
+            let p = col.querySelector('.card-body p')
+            h5.innerText = data.todo
+            p.innerText = data.userId
 
-        updatetodobtn.classList.add('d-none')
-        addtodobtn.classList.remove('d-none')
-        snackbar(`The New todo with id ${data.id} is Updated Successfully !!! `, 'success')
+            updatetodobtn.classList.add('d-none')
+            addtodobtn.classList.remove('d-none')
+            snackbar(`The New todo with id ${data.id} is Updated Successfully !!! `, 'success')
 
-    })
-    .catch(err =>{
-        cl(err)
-    })
-    .finally(()=>{
-        spinner.classList.add('d-none')
+        })
+        .catch(err => {
+            cl(err)
+        })
+        .finally(() => {
+            spinner.classList.add('d-none')
 
-    })
+        })
 
 }
 
@@ -257,7 +258,7 @@ function onRemove(ele) {
 
 
     });
-   
+
 }
 
 
